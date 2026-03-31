@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>What is code | AediaX Education</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+    
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Base Styles - Professional Single Color Scheme */
+        :root {
+            --primary: #1a5f7a;
+            --primary-dark: #0e3e52;
+            --primary-light: #e8f0f3;
+            --secondary: #4a6a7a;
+            --text-primary: #1a2a3a;
+            --text-secondary: #4a5a6a;
+            --text-light: #6c7a8a;
+            --border: #e2e8f0;
+            --background: #ffffff;
+            --background-alt: #f8fafc;
+            --success: #2c7a4d;
+            --warning: #c57c2c;
+            --error: #c52c2c;
+            --info: #1a5f7a;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--background-alt);
+            font-size: 16px;
+        }
+        
+        /* Course Container */
+        .course-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: var(--background);
+        }
+        
+        /* Header Section */
+        .course-header {
+            background: var(--background);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem 2rem;
+        }
+        
+        .course-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .course-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .course-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .course-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            max-width: 800px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .course-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        /* Main Layout - Two Column */
+        .course-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Sidebar */
+        .course-sidebar {
+            position: sticky;
+            top: 2rem;
+            align-self: start;
+        }
+        
+        .toc-container {
+            background: var(--background-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .toc-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .toc-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .toc-link:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        
+        .toc-link.level-2 {
+            padding-left: 1.75rem;
+        }
+        
+        .toc-link.level-3 {
+            padding-left: 2.75rem;
+            font-size: 0.8125rem;
+        }
+        
+        /* Main Content */
+        .course-main {
+            min-width: 0;
+        }
+        
+        /* Typography */
+        .course-content {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+        
+        .course-content h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            color: var(--text-primary);
+        }
+        
+        .course-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+            color: var(--text-primary);
+        }
+        
+        .course-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        .course-content h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .course-content p {
+            margin-bottom: 1.25rem;
+        }
+        
+        .course-content a {
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        .course-content a:hover {
+            border-bottom-color: var(--primary);
+        }
+        
+        .course-content ul,
+        .course-content ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+        
+        .course-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Responsive Media Styles */
+        .course-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .course-content video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            background: var(--background-alt);
+        }
+        
+        .course-content audio {
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        /* Figure with Caption */
+        .figure {
+            margin: 1.5rem 0;
+        }
+        
+        .figure img,
+        .figure video {
+            margin: 0 0 0.5rem;
+        }
+        
+        .figcaption {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        /* Code Blocks */
+        .code-block {
+            margin: 1.5rem 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--background-alt);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .code-language {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .copy-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        
+        .copy-btn:hover {
+            background: var(--border);
+        }
+        
+        pre {
+            margin: 0;
+            padding: 1rem;
+            overflow-x: auto;
+            background: #1e1e1e;
+        }
+        
+        code {
+            font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        :not(pre) > code {
+            background: var(--background-alt);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--primary);
+        }
+        
+        /* Blockquote */
+        .course-content blockquote {
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            background: var(--background-alt);
+            border-left: 3px solid var(--primary);
+            color: var(--text-secondary);
+        }
+        
+        /* Tables */
+        .course-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.875rem;
+        }
+        
+        .course-content th,
+        .course-content td {
+            border: 1px solid var(--border);
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .course-content th {
+            background: var(--background-alt);
+            font-weight: 600;
+        }
+        
+        /* Question Paper Styles */
+        .question-paper {
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .paper-header {
+            background: var(--background-alt);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .paper-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .paper-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .paper-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .paper-meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+        
+        .paper-instructions {
+            background: var(--primary-light);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.875rem;
+        }
+        
+        .quiz-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 1rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        .quiz-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .quiz-btn.secondary {
+            background: var(--background-alt);
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+        
+        .paper-questions {
+            padding: 1.5rem;
+        }
+        
+        .question-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .question-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .question-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .question-number {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        .question-marks {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        .question-type {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--text-light);
+            font-size: 0.75rem;
+        }
+        
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        /* MCQ Options */
+        .mcq-options {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .mcq-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--background);
+        }
+        
+        .mcq-option.correct {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+        
+        .option-letter {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .option-text {
+            flex: 1;
+        }
+        
+        .correct-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--success);
+            font-size: 0.75rem;
+        }
+        
+        /* Model Answer */
+        .model-answer {
+            background: var(--background-alt);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 6px;
+        }
+        
+        .model-answer-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        
+        .keyword-tag {
+            background: var(--border);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Coding Sections */
+        .coding-details {
+            margin-top: 1rem;
+        }
+        
+        .coding-section {
+            background: var(--background-alt);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+        }
+        
+        .coding-section-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .sample-box {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.8125rem;
+            overflow-x: auto;
+        }
+        
+        .test-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+        
+        .test-case {
+            background: var(--background);
+            border: 1px solid var(--border);
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        
+        /* Quiz Mode */
+        .quiz-container {
+            background: var(--background);
+            padding: 1.5rem;
+        }
+        
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        
+        .quiz-question.selected {
+            border-left: 3px solid var(--primary);
+        }
+        
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quiz-option:hover {
+            background: var(--background-alt);
+        }
+        
+        .quiz-option.selected {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+        
+        .quiz-option.correct-answer {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+        
+        .quiz-option.wrong-answer {
+            background: #fee;
+            border-color: var(--error);
+        }
+        
+        .quiz-feedback {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+        
+        .quiz-feedback.correct {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        
+        .quiz-feedback.wrong {
+            background: #fee;
+            color: var(--error);
+        }
+        
+        .quiz-results {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--background-alt);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .quiz-score {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        .course-footer {
+            background: var(--background-alt);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .footer-link:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.75rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .course-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1.5rem;
+            }
+            
+            .course-sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .course-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .course-header {
+                padding: 2rem 1.5rem;
+            }
+            
+            .course-title {
+                font-size: 1.75rem;
+            }
+            
+            .course-description {
+                font-size: 1rem;
+            }
+            
+            .course-meta {
+                gap: 1rem;
+            }
+            
+            .course-layout {
+                padding: 1rem;
+            }
+            
+            .course-content h1 {
+                font-size: 1.5rem;
+            }
+            
+            .course-content h2 {
+                font-size: 1.25rem;
+            }
+            
+            .course-content h3 {
+                font-size: 1.125rem;
+            }
+            
+            .paper-header {
+                padding: 1rem;
+            }
+            
+            .paper-title {
+                font-size: 1.25rem;
+            }
+            
+            .paper-questions {
+                padding: 1rem;
+            }
+            
+            .question-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .footer-links {
+                gap: 1rem;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .test-cases {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .course-title {
+                font-size: 1.5rem;
+            }
+            
+            .meta-item {
+                font-size: 0.75rem;
+            }
+            
+            .quiz-option {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            .course-sidebar,
+            .course-footer,
+            .quiz-btn,
+            .copy-btn {
+                display: none;
+            }
+            
+            .course-layout {
+                display: block;
+                padding: 0;
+            }
+            
+            .course-content img {
+                page-break-inside: avoid;
+            }
+            
+            .question-paper {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="course-container">
+        <!-- Header -->
+        <header class="course-header">
+            <div class="course-header-content">
+                <div class="course-badge">
+                    📚 Online Course
+                </div>
+                <h1 class="course-title">What is code</h1>
+                <p class="course-description">Build your course using the visual editor. Insert media, code, and question papers from your library.</p>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        📅 Created: March 31, 2026
+                    </div>
+                    <div class="meta-item">
+                        📁 1 Resources
+                    </div>
+                    <div class="meta-item">
+                        💻 3 Code Examples
+                    </div>
+                    <div class="meta-item">
+                        📝 3 Assessments
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Layout -->
+        <div class="course-layout">
+            <!-- Sidebar TOC -->
+            <aside class="course-sidebar">
+                <div class="toc-container">
+                    <div class="toc-title">Contents</div>
+                    <nav>
+                        <ul class="toc-list" id="table-of-contents"></ul>
+                    </nav>
+                </div>
+            </aside>
+            
+            <!-- Main Content -->
+            <main class="course-main">
+                <div class="course-content">
+                    <p>README</p><p><a href="https://raw.githubusercontent.com/AediaX/SAPL/main/README.md" rel="noopener noreferrer" target="_blank">View Raw</a></p><pre class="ql-syntax" spellcheck="false"># Meal Pass Management System - Software Requirements Specification (SRS)
+
+This repository contains the complete **Software Requirements Specification (SRS)** for the **Meal Pass Management System** designed for **SAPL Industries Pvt Ltd**. The document follows standard SRS structure and is presented in a clean, iOS-inspired webpage format.
+
+## 📋 Project Overview
+
+The Meal Pass Management System is designed to manage employee meal access through barcode-enabled cards at SAPL Industries, which has:
+- **150 Staff Members**
+- **2000 Workers**
+
+The system tracks daily meal consumption, prevents duplicate meal usage, and integrates with attendance and payroll deduction systems.
+
+## 🚀 Key Features
+
+- **Employee Management**: Register and manage employees with barcode ID assignment
+- **Barcode Card Integration**: Unique PVC cards with employee barcodes
+- **Meal Tracking**: Record breakfast and lunch consumption
+- **Smart Rules**: Prevent duplicate meals (max 1 breakfast + 1 lunch per day)
+- **Payroll Integration**: Automatic deduction calculation based on meal costs
+- **Reporting System**: Export reports in Excel, CSV, and PDF formats
+- **Offline Operation**: Local database with cloud synchronization
+
+## 🛠 Technology Stack
+
+| Component | Technology |
+|-----------|------------|
+| Frontend | React.js |
+| Desktop Runtime | Electron.js |
+| Backend | Node.js |
+| Local Database | SQLite |
+| Cloud Services | Firebase Firestore |
+| Authentication | Firebase Auth |
+
+## 📊 Hardware Requirements
+
+| Component | Quantity |
+|-----------|----------|
+| Barcode Scanner | 4–5 units |
+| Canteen Computer | 1–2 units |
+| PVC Cards | 2150 cards |
+| Card Printer | 1 unit |
+
+## 📅 Implementation Timeline
+
+| Phase | Duration |
+|-------|----------|
+| Requirement Analysis | 1 week |
+| System Design | 1 week |
+| Development | 3 weeks |
+| Testing | 1 week |
+| Deployment | 1 week |
+| **Total** | **6–7 weeks** |
+
+## 📄 Document Structure
+
+The SRS document includes:
+
+1. **Introduction** - Purpose, scope, and definitions
+2. **Overall Description** - Product perspective, functions, user classes
+3. **System Features** - Detailed feature specifications
+4. **Non-Functional Requirements** - Performance, reliability, security
+5. **Hardware &amp; Software Requirements**
+6. **Implementation Timeline**
+7. **Future Enhancements**
+
+## 🎯 Business Benefits
+
+- **Efficient meal tracking** with real-time data
+- **Accurate payroll deductions** based on actual consumption
+- **Faster cafeteria service** with quick scanning
+- **Reliable offline operation** in low-internet areas
+- **Scalable architecture** for future expansion
+- **Enhanced transparency** in cafeteria management
+
+## 🔮 Future Enhancements
+
+- RFID card system integration
+- Face recognition access
+- Mobile app for employees
+- AI analytics for meal usage patterns
+- HRMS integration
+
+## 🏢 About AediaX Tech Private Limited
+
+AediaX Tech delivers innovative software solutions for industrial automation and management systems. This SRS document demonstrates our commitment to creating robust, scalable, and user-friendly enterprise applications.
+
+## 📝 Document Version
+
+- **Version**: 1.0
+- **Status**: Final
+- **Date**: March 2025
+
+---
+
+*For more information about AediaX Tech solutions, visit [aediax.com](https://aediax.com)*
+</pre><p>index</p><p><a href="https://raw.githubusercontent.com/AediaX/SAPL/main/index.html" rel="noopener noreferrer" target="_blank">View Raw</a></p><pre class="ql-syntax" spellcheck="false">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"&gt;
+  &lt;title&gt;Meal Pass SRS · AediaX Tech&lt;/title&gt;
+  &lt;!-- iOS style &amp; simple document feel --&gt;
+  &lt;style&gt;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f5f7;  /* light iOS background */
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1d1d1f;
+      line-height: 1.47059;
+      letter-spacing: -0.022em;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+      backdrop-filter: blur(2px);
+      padding: 2rem 2rem 3rem 2rem;
+    }
+
+    /* header with logo + company */
+    .header-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid #e9e9ed;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 44px;
+      width: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .company-title h2 {
+      font-weight: 500;
+      font-size: 1.5rem;
+      color: #1d1d1f;
+      letter-spacing: -0.02em;
+    }
+
+    .company-title p {
+      font-size: 1rem;
+      color: #6e6e73;
+      margin-top: 2px;
+    }
+
+    .document-badge {
+      margin-left: auto;
+      background: #f0f0f4;
+      border-radius: 40px;
+      padding: 0.5rem 1.3rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1d1d1f;
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+
+    /* main headings like apple pages */
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin: 1rem 0 0.25rem 0;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 2.2rem 0 1rem 0;
+      padding-bottom: 0.3rem;
+      border-bottom: 2px solid #f0f0f4;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin: 1.8rem 0 0.6rem 0;
+      color: #1d1d1f;
+    }
+
+    h4 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.2rem 0;
+      color: #2c2c2e;
+    }
+
+    p, li, .text-block {
+      font-size: 1.05rem;
+      color: #2c2c2e;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-card {
+      background: #f9f9fb;
+      border-radius: 20px;
+      padding: 1.5rem 1.8rem;
+      margin: 1.5rem 0;
+      border: 1px solid #f0f0f4;
+    }
+
+    .insight-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .insight-list li {
+      background: white;
+      padding: 0.7rem 1.2rem;
+      margin-bottom: 6px;
+      border-radius: 14px;
+      border: 1px solid #e9e9ed;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      background: #007aff;
+      color: white;
+      border-radius: 30px;
+      padding: 0.2rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-right: 0.6rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      margin: 1.2rem 0;
+    }
+
+    th {
+      background: #f5f5f7;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-align: left;
+      padding: 0.9rem 1rem;
+      color: #1d1d1f;
+      border-bottom: 1px solid #ddd;
+    }
+
+    td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #efeff1;
+      font-size: 1rem;
+    }
+
+    .chip {
+      background: #e9e9ed;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .note {
+      background: #e8f1fe;
+      border-radius: 18px;
+      padding: 1rem 1.5rem;
+      color: #1d4ed8;
+      font-weight: 450;
+      border-left: 4px solid #007aff;
+    }
+
+    .barcode-example {
+      font-family: 'Courier New', monospace;
+      background: #1d1d1f;
+      color: #f5f5f7;
+      padding: 1rem 1.8rem;
+      border-radius: 60px;
+      font-size: 1.8rem;
+      letter-spacing: 8px;
+      display: inline-block;
+      margin: 0.6rem 0;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e9e9ed;
+      margin: 2rem 0;
+    }
+
+    /* responsive */
+    @media (max-width: 650px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.6rem; }
+      .container { padding: 1.2rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .header-bar { flex-direction: column; align-items: flex-start; }
+      .document-badge { margin-left: 0; }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;!-- header with AediaX logo (inline placeholder) + company --&gt;
+    &lt;div class="header-bar"&gt;
+      &lt;div class="logo"&gt;
+        &lt;!-- official AediaX logo from provided link --&gt;
+        &lt;img src="https://aediax.com/static/media/logo.fb254eb9a5d0c80f4f86.png" alt="AediaX Tech logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDgwIDQwIj48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGZpbGw9IiMwMDdBQUYiIC8+PHRleHQgeD0iMTIiIHk9IjI2IiBmb250LWZhbWlseT0iQXJpYWwiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjE2Ij5BZWRpYVg8L3RleHQ+PC9zdmc+'"&gt;
+      &lt;/div&gt;
+      &lt;div class="company-title"&gt;
+        &lt;h2&gt;AediaX Tech Private Limited&lt;/h2&gt;
+        &lt;p&gt;Software requirements · Meal Pass System&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="document-badge"&gt;SRS v1.0 · SAPL Industries&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- main title --&gt;
+    &lt;h1&gt;🍱 Meal Pass Management System&lt;/h1&gt;
+    &lt;p style="color:#6e6e73; margin-top: -0.2rem;"&gt;SAPL Industries Pvt Ltd — 150 staff + 2000 workers&lt;/p&gt;
+
+    &lt;!-- 1. Introduction --&gt;
+    &lt;h2&gt;1. Introduction&lt;/h2&gt;
+    &lt;h3&gt;1.1 Purpose&lt;/h3&gt;
+    &lt;p&gt;This document defines the requirements for the &lt;strong&gt;Meal Pass Management System&lt;/strong&gt; at SAPL Industries. The system manages employee meal access through barcode cards, tracks daily consumption, and integrates with attendance &amp; payroll deduction. It ensures accuracy, speed, transparency, and real‑time reporting.&lt;/p&gt;
+
+    &lt;h3&gt;1.2 Scope&lt;/h3&gt;
+    &lt;p&gt;SAPL Industries has &lt;span class="badge"&gt;150 Staff&lt;/span&gt; &lt;span class="badge" style="background:#34c759;"&gt;2000 Workers&lt;/span&gt; The system will allow meal access using barcode‑enabled cards, identify employees, prevent duplicate meals, record history, calculate payroll deductions, and generate reports. Offline operation with periodic cloud sync is supported.&lt;/p&gt;
+
+    &lt;div class="section-card"&gt;
+      &lt;h4 style="margin-top: 0;"&gt;📋 Definitions&lt;/h4&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Term&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Employee&lt;/td&gt;&lt;td&gt;Worker or staff member registered in system&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Meal Pass&lt;/td&gt;&lt;td&gt;Authorization to consume meal&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Barcode Card&lt;/td&gt;&lt;td&gt;PVC card with employee barcode&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Admin Panel&lt;/td&gt;&lt;td&gt;System interface for management&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Scan System&lt;/td&gt;&lt;td&gt;Canteen interface used for scanning&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Payroll Deduction&lt;/td&gt;&lt;td&gt;Salary deduction based on meal usage&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 2. Overall description --&gt;
+    &lt;h2&gt;2. Overall Description&lt;/h2&gt;
+    &lt;h3&gt;2.1 Product Perspective&lt;/h3&gt;
+    &lt;p&gt;Three major components: &lt;strong&gt;Admin Panel&lt;/strong&gt; · &lt;strong&gt;Cafeteria Scan System&lt;/strong&gt; · &lt;strong&gt;Cloud Reporting&lt;/strong&gt;&lt;/p&gt;
+    &lt;div style="background:#f1f1f5; padding:1.2rem; border-radius:24px; font-family:monospace; margin:1rem 0;"&gt;
+      Worker Card → Barcode Scanner → Local Scan System → Local Database → Cloud Sync → Admin Dashboard → Payroll Reports
+    &lt;/div&gt;
+
+    &lt;h3&gt;2.2 Product Functions&lt;/h3&gt;
+    &lt;ul class="insight-list"&gt;
+      &lt;li&gt;&lt;span class="chip"&gt;➕&lt;/span&gt; Employee Management – add, update, assign barcode, activate/deactivate&lt;/li&gt;
+      &lt;li&gt;&lt;span class="chip"&gt;🍽️&lt;/span&gt; Meal Tracking – record breakfast/lunch, prevent duplicate meals&lt;/li&gt;
+      &lt;li&gt;&lt;span class="chip"&gt;⚖️&lt;/span&gt; Daily rules – workers: breakfast 1x, lunch 1x (total 2 meals/day)&lt;/li&gt;
+      &lt;li&gt;&lt;span class="chip"&gt;📊&lt;/span&gt; Reporting – daily/monthly consumption, payroll deduction export&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h3&gt;2.3 User Classes&lt;/h3&gt;
+    &lt;div class="grid-2"&gt;
+      &lt;div style="background:#f9f9fb; padding:1.2rem; border-radius:20px;"&gt;
+        &lt;div style="font-weight:600;"&gt;👤 Admin (HR/management)&lt;/div&gt;
+        &lt;p style="font-size:0.95rem;"&gt;Manage employee database, configure meal costs, view reports, export payroll data.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div style="background:#f9f9fb; padding:1.2rem; border-radius:20px;"&gt;
+        &lt;div style="font-weight:600;"&gt;🍴 Canteen Operator&lt;/div&gt;
+        &lt;p style="font-size:0.95rem;"&gt;Scan employee cards, serve meals, monitor system – no data modification.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div style="background:#f9f9fb; padding:1.2rem; border-radius:20px;"&gt;
+        &lt;div style="font-weight:600;"&gt;🧑‍🏭 Employee (Worker/Staff)&lt;/div&gt;
+        &lt;p style="font-size:0.95rem;"&gt;Carry barcode card, scan during meal – no direct software interaction.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 3 System features --&gt;
+    &lt;h2&gt;3. System Features&lt;/h2&gt;
+
+    &lt;h3&gt;3.1 Employee Registration&lt;/h3&gt;
+    &lt;p&gt;Admin registers employees with: Employee ID, Name, Department, Category (Staff/Worker), Barcode ID, meal eligibility.&lt;/p&gt;
+
+    &lt;h3&gt;3.2 Barcode Card Integration&lt;/h3&gt;
+    &lt;p&gt;Each employee receives a PVC card with unique barcode.&lt;/p&gt;
+    &lt;div class="barcode-example"&gt;|| || W1023 ||&lt;/div&gt;
+    &lt;p style="font-family: monospace;"&gt;Barcode scanners read employee ID (e.g., W1023).&lt;/p&gt;
+
+    &lt;h3&gt;3.3 Meal Scanning&lt;/h3&gt;
+    &lt;p&gt;Process: scan → identify employee → check eligibility → record → confirmation.&lt;/p&gt;
+    &lt;div style="display:flex; gap:1rem; flex-wrap:wrap;"&gt;
+      &lt;span class="chip" style="background:#34c759; color:white;"&gt;✅ Breakfast Approved&lt;/span&gt;
+      &lt;span class="chip" style="background:#ff3b30; color:white;"&gt;⛔ Breakfast Already Taken&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;h3&gt;3.4 Meal Limit Rules&lt;/h3&gt;
+    &lt;table&gt;
+      &lt;tr&gt;&lt;th&gt;Meal&lt;/th&gt;&lt;th&gt;Limit per day&lt;/th&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Breakfast&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Lunch&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;p&gt;System prevents duplicate scanning.&lt;/p&gt;
+
+    &lt;h3&gt;3.5 Payroll Deduction&lt;/h3&gt;
+    &lt;p&gt;Example costs: Breakfast ₹15, Lunch ₹25.&lt;br&gt;Monthly: (breakfast count × ₹15) + (lunch count × ₹25) = total deduction. Export payroll report.&lt;/p&gt;
+
+    &lt;h3&gt;3.6 Reporting System&lt;/h3&gt;
+    &lt;p&gt;Admin dashboard: meals consumed today, worker participation, statistics, monthly summaries. Export Excel/CSV/PDF.&lt;/p&gt;
+
+    &lt;h3&gt;3.7 Offline Operation&lt;/h3&gt;
+    &lt;p&gt;Scan system uses local database (SQLite), records instantly, syncs to cloud when internet available. Zero interruption.&lt;/p&gt;
+    &lt;div class="note"&gt;⚡ Supports low‑internet areas, fast scanning, no service downtime.&lt;/div&gt;
+
+    &lt;!-- 4 Non‑functional --&gt;
+    &lt;h2&gt;4. Non‑Functional Requirements&lt;/h2&gt;
+    &lt;div class="grid-2"&gt;
+      &lt;div&gt;&lt;strong&gt;⚡ Performance&lt;/strong&gt;&lt;br&gt;2000+ workers, scan &lt;1 sec, concurrent ops.&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;🔁 Reliability&lt;/strong&gt;&lt;br&gt;Works offline, no data loss, auto backup.&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;🔐 Security&lt;/strong&gt;&lt;br&gt;Auth, role‑based access, encrypted DB, secure cloud sync.&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;📱 Usability&lt;/strong&gt;&lt;br&gt;Simple scanning, minimal training for canteen staff.&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;📈 Scalability&lt;/strong&gt;&lt;br&gt;Add factories, employees, meal types.&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 5 Hardware requirements --&gt;
+    &lt;h2&gt;5. Hardware Requirements&lt;/h2&gt;
+    &lt;table&gt;
+      &lt;tr&gt;&lt;th&gt;Component&lt;/th&gt;&lt;th&gt;Quantity&lt;/th&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Barcode Scanner&lt;/td&gt;&lt;td&gt;4–5&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Canteen Computer&lt;/td&gt;&lt;td&gt;1–2&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;PVC Cards&lt;/td&gt;&lt;td&gt;2150&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Card Printer&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+
+    &lt;!-- 6 Software stack --&gt;
+    &lt;h2&gt;6. Software Requirements (recommended stack)&lt;/h2&gt;
+    &lt;div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.2rem 0;"&gt;
+      &lt;span class="chip"&gt;React.js (frontend)&lt;/span&gt;
+      &lt;span class="chip"&gt;Electron.js (desktop runtime)&lt;/span&gt;
+      &lt;span class="chip"&gt;Node.js (backend)&lt;/span&gt;
+      &lt;span class="chip"&gt;SQLite (local DB)&lt;/span&gt;
+      &lt;span class="chip"&gt;Firebase Firestore (cloud)&lt;/span&gt;
+      &lt;span class="chip"&gt;Firebase Auth&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 7 Timeline --&gt;
+    &lt;h2&gt;7. Estimated Implementation Timeline&lt;/h2&gt;
+    &lt;table&gt;
+      &lt;tr&gt;&lt;th&gt;Phase&lt;/th&gt;&lt;th&gt;Duration&lt;/th&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Requirement Analysis&lt;/td&gt;&lt;td&gt;1 week&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;System Design&lt;/td&gt;&lt;td&gt;1 week&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Development&lt;/td&gt;&lt;td&gt;3 weeks&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Testing&lt;/td&gt;&lt;td&gt;1 week&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Deployment&lt;/td&gt;&lt;td&gt;1 week&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;p&gt;&lt;strong&gt;Total: 6–7 weeks&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;!-- 8 Future enhancements --&gt;
+    &lt;h2&gt;8. Future Enhancements&lt;/h2&gt;
+    &lt;ul style="display:flex; flex-wrap:wrap; gap:0.4rem 1rem;"&gt;
+      &lt;li&gt;&lt;span class="chip"&gt;📡 RFID card system&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span class="chip"&gt;👤 Face recognition&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span class="chip"&gt;📱 mobile app for employees&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span class="chip"&gt;📊 AI analytics&lt;/span&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;span class="chip"&gt;🧾 HRMS integration&lt;/span&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;!-- 9 Conclusion --&gt;
+    &lt;h2&gt;9. Conclusion&lt;/h2&gt;
+    &lt;div class="section-card" style="background: #eefbf5; border-left: 6px solid #34c759;"&gt;
+      &lt;p style="font-size:1.1rem; margin-bottom:0;"&gt;The Meal Pass System will provide SAPL Industries with efficient meal tracking, accurate payroll deduction, faster cafeteria service, reliable offline operation, and scalable architecture for future growth. Significant improvement in operational efficiency and transparency.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;!-- footer as AediaX detail --&gt;
+    &lt;hr&gt;
+    &lt;div style="display: flex; justify-content: space-between; align-items: center; color:#8e8e93; font-size:0.9rem;"&gt;
+      &lt;span&gt;© 2025 AediaX Tech Private Limited · SRS for SAPL Industries&lt;/span&gt;
+      &lt;span style="background: #f1f1f5; padding: 0.3rem 1rem; border-radius: 60px;"&gt;version 1.0 · final&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><p>1774893725788_t6l7o2_App</p><p><a href="https://raw.githubusercontent.com/aediaxeducation-lab/A-5/main/media_files/code/1774893725788_t6l7o2_App.css" rel="noopener noreferrer" target="_blank">View Raw</a></p><pre class="ql-syntax" spellcheck="false">.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</pre><h3>Java</h3><p>java course</p><p><br></p><p>Duration: 60 min</p><p>Total Marks: 1</p><p>Questions: 1</p><ol><li><strong>java question</strong> (1 marks)</li></ol><p class="ql-align-center"><a href="https://raw.githubusercontent.com/aediaxeducation-lab/A-8/main/question_papers/mcq/1774937268464_java.json?t=1774937268464" rel="noopener noreferrer" target="_blank">View Full Question Paper</a></p><h3>Question paper</h3><p>New question paper</p><p><br></p><p>Duration: 60 min</p><p>Total Marks: 5</p><p>Questions: 1</p><ol><li><strong>ok</strong> (5 marks)</li></ol><p class="ql-align-center"><a href="https://raw.githubusercontent.com/aediaxeducation-lab/A-5/main/question_papers/written/1774938426030_question-paper.json?t=1774938426030" rel="noopener noreferrer" target="_blank">View Full Question Paper</a></p><h3>React Course</h3><p>ok</p><p><br></p><p>Duration: 60 min</p><p>Total Marks: 10</p><p>Questions: 1</p><ol><li><strong>what is react</strong> (10 marks)</li></ol><p class="ql-align-center"><a href="https://raw.githubusercontent.com/aediaxeducation-lab/A-3/main/question_papers/coding/1774938491515_react-course.json?t=1774938491515" rel="noopener noreferrer" target="_blank">View Full Question Paper</a></p><p><img src="https://raw.githubusercontent.com/aediaxeducation-lab/A-10/main/media_files/images/1774935333479_cukebu_Logo.png?t=1774935333479"></p>
+                    
+                    
+                        <div class="question-papers-section">
+                            
+    <div class="question-paper" id="paper-7dODYFd2qFqvYzdkslzf">
+      <div class="paper-header">
+        <h2 class="paper-title">Java</h2>
+        <p class="paper-description">java course</p>
+        <div class="paper-meta">
+          <span class="paper-meta-item">⏱️ Duration: 60 minutes</span>
+          <span class="paper-meta-item">📊 Total Marks: 1</span>
+          <span class="paper-meta-item">📝 Questions: 1</span>
+          <span class="paper-meta-item">✅ Passing: 1 marks</span>
+        </div>
+      </div>
+      
+      
+        <div class="paper-instructions">
+          <strong>📋 Instructions:</strong><br>
+          ok
+        </div>
+      
+      
+      
+        <button class="quiz-btn" onclick="startQuizMode('7dODYFd2qFqvYzdkslzf')">
+          📝 Take Practice Quiz
+        </button>
+      
+      
+      <div id="quiz-container-7dODYFd2qFqvYzdkslzf" style="display: none;"></div>
+      
+      <div id="original-content-7dODYFd2qFqvYzdkslzf" class="paper-questions">
+        
+    <div class="question-item">
+      <div class="question-header">
+        <div class="question-number">Q1</div>
+        <div class="question-marks">1 marks</div>
+        <div class="question-type">
+          🔘 Multiple Choice
+        </div>
+      </div>
+      <div class="question-text">java question</div>
+  <div class="mcq-options">
+        <div class="mcq-option correct">
+          <div class="option-letter"><strong>A.</strong></div>
+          <div class="option-text">1</div>
+          <div class="correct-indicator">✓ Correct Answer</div>
+        </div>
+      
+        <div class="mcq-option ">
+          <div class="option-letter"><strong>B.</strong></div>
+          <div class="option-text">2</div>
+          
+        </div>
+      
+        <div class="mcq-option ">
+          <div class="option-letter"><strong>C.</strong></div>
+          <div class="option-text">3</div>
+          
+        </div>
+      
+        <div class="mcq-option ">
+          <div class="option-letter"><strong>D.</strong></div>
+          <div class="option-text">4</div>
+          
+        </div>
+      </div></div>
+      </div>
+    </div>
+  
+    <div class="question-paper" id="paper-eS22s6wALpHxtoLlC7Fk">
+      <div class="paper-header">
+        <h2 class="paper-title">Question paper</h2>
+        <p class="paper-description">New question paper</p>
+        <div class="paper-meta">
+          <span class="paper-meta-item">⏱️ Duration: 60 minutes</span>
+          <span class="paper-meta-item">📊 Total Marks: 5</span>
+          <span class="paper-meta-item">📝 Questions: 1</span>
+          <span class="paper-meta-item">✅ Passing: 2 marks</span>
+        </div>
+      </div>
+      
+      
+        <div class="paper-instructions">
+          <strong>📋 Instructions:</strong><br>
+          ok ok
+        </div>
+      
+      
+      
+      
+      <div id="quiz-container-eS22s6wALpHxtoLlC7Fk" style="display: none;"></div>
+      
+      <div id="original-content-eS22s6wALpHxtoLlC7Fk" class="paper-questions">
+        
+    <div class="question-item">
+      <div class="question-header">
+        <div class="question-number">Q1</div>
+        <div class="question-marks">5 marks</div>
+        <div class="question-type">
+          📝 Written Answer
+        </div>
+      </div>
+      <div class="question-text">ok</div>
+  
+      <div class="model-answer">
+        <div class="model-answer-title">📝 Model Answer</div>
+        <div>ok</div>
+        
+      </div>
+    </div>
+      </div>
+    </div>
+  
+    <div class="question-paper" id="paper-G5lFuTfsI2XtkTaZwZpR">
+      <div class="paper-header">
+        <h2 class="paper-title">React Course</h2>
+        <p class="paper-description">ok</p>
+        <div class="paper-meta">
+          <span class="paper-meta-item">⏱️ Duration: 60 minutes</span>
+          <span class="paper-meta-item">📊 Total Marks: 10</span>
+          <span class="paper-meta-item">📝 Questions: 1</span>
+          <span class="paper-meta-item">✅ Passing: 4 marks</span>
+        </div>
+      </div>
+      
+      
+        <div class="paper-instructions">
+          <strong>📋 Instructions:</strong><br>
+          kkk
+        </div>
+      
+      
+      
+      
+      <div id="quiz-container-G5lFuTfsI2XtkTaZwZpR" style="display: none;"></div>
+      
+      <div id="original-content-G5lFuTfsI2XtkTaZwZpR" class="paper-questions">
+        
+    <div class="question-item">
+      <div class="question-header">
+        <div class="question-number">Q1</div>
+        <div class="question-marks">10 marks</div>
+        <div class="question-type">
+          💻 Coding Problem
+        </div>
+      </div>
+      <div class="question-text">what is react</div>
+  <div class="coding-details">
+        <div class="coding-section">
+          <div class="coding-section-title">📥 Input Format</div>
+          <div>111</div>
+        </div>
+      
+        <div class="coding-section">
+          <div class="coding-section-title">📤 Output Format</div>
+          <div>111</div>
+        </div>
+      
+        <div class="coding-section">
+          <div class="coding-section-title">⚠️ Constraints</div>
+          <div>111</div>
+        </div>
+      
+        <div class="coding-section">
+          <div class="coding-section-title">📋 Sample</div>
+          <div class="sample-box"><strong>Input:</strong><br>1</div>
+          <div class="sample-box"><strong>Output:</strong><br>1</div>
+        </div>
+      
+        <div class="coding-section">
+          <div class="coding-section-title">🧪 Test Cases</div>
+          <div class="test-cases">
+            
+              <div class="test-case">
+                <div><strong>Input:</strong> 1</div>
+                <div><strong>Output:</strong> 1</div>
+              </div>
+            
+            
+          </div>
+        </div>
+      </div></div>
+      </div>
+    </div>
+  
+                        </div>
+                    
+                </div>
+            </main>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="course-footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">About AediaX</a>
+                    <a href="#" class="footer-link">Help Center</a>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+                <div class="copyright">
+                    © 2026 AediaX Education. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // Generate Table of Contents
+        function generateTOC() {
+            const content = document.querySelector('.course-content');
+            if (!content) return;
+            
+            const headings = content.querySelectorAll('h1, h2, h3');
+            const tocList = document.getElementById('table-of-contents');
+            if (!tocList) return;
+            
+            if (headings.length === 0) {
+                tocList.innerHTML = '<li class="toc-item">No sections found</li>';
+                return;
+            }
+            
+            tocList.innerHTML = '';
+            
+            headings.forEach((heading, index) => {
+                if (!heading.id) {
+                    heading.id = 'section-' + index;
+                }
+                
+                const level = parseInt(heading.tagName.substring(1));
+                const li = document.createElement('li');
+                li.className = 'toc-item';
+                
+                const link = document.createElement('a');
+                link.className = 'toc-link level-' + level;
+                link.href = '#' + heading.id;
+                link.textContent = heading.textContent;
+                
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+                
+                li.appendChild(link);
+                tocList.appendChild(li);
+            });
+        }
+        
+        // Add copy buttons to code blocks
+        function addCopyButtons() {
+            const codeBlocks = document.querySelectorAll('pre');
+            codeBlocks.forEach((pre) => {
+                if (pre.closest('.code-block')) return;
+                
+                const code = pre.querySelector('code');
+                if (!code) return;
+                
+                const classList = code.className || '';
+                const langMatch = classList.match(/language-(\w+)/);
+                const language = langMatch ? langMatch[1] : 'code';
+                
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block';
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                
+                const header = document.createElement('div');
+                header.className = 'code-header';
+                header.innerHTML = `
+                    <span class="code-language">${language.toUpperCase()}</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                `;
+                wrapper.insertBefore(header, pre);
+            });
+        }
+        
+        // Copy code function
+        window.copyCode = function(button) {
+            const wrapper = button.closest('.code-block');
+            const pre = wrapper.querySelector('pre');
+            const code = pre.querySelector('code');
+            const text = code ? code.textContent : pre.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            });
+        };
+        
+        // Make media responsive with captions
+        function makeMediaResponsive() {
+            // Images
+            const images = document.querySelectorAll('.course-content img');
+            images.forEach(img => {
+                if (!img.closest('.figure') && !img.closest('.media-card')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'figure';
+                    img.parentNode.insertBefore(wrapper, img);
+                    wrapper.appendChild(img);
+                    
+                    if (img.alt && img.alt.length > 0 && img.alt !== img.getAttribute('data-original-alt')) {
+                        const caption = document.createElement('div');
+                        caption.className = 'figcaption';
+                        caption.textContent = img.alt;
+                        wrapper.appendChild(caption);
+                    }
+                }
+            });
+            
+            // Videos
+            const videos = document.querySelectorAll('.course-content video');
+            videos.forEach(video => {
+                video.setAttribute('controls', 'controls');
+                video.setAttribute('playsinline', 'playsinline');
+                video.style.maxWidth = '100%';
+                video.style.height = 'auto';
+            });
+            
+            // Audio
+            const audios = document.querySelectorAll('.course-content audio');
+            audios.forEach(audio => {
+                audio.setAttribute('controls', 'controls');
+                audio.style.width = '100%';
+            });
+        }
+        
+        // Quiz Mode Functions
+        window.questionData = {};
+        
+            window.questionData['7dODYFd2qFqvYzdkslzf'] = [{"text":"java question","options":["1","2","3","4"],"correctOption":0,"marks":1,"type":"mcq","id":1774937157353,"createdAt":"2026-03-31T06:05:57.353Z"}];
+        
+            window.questionData['eS22s6wALpHxtoLlC7Fk'] = [{"text":"ok","modelAnswer":"ok","marks":5,"type":"written","keywords":[],"wordLimit":53,"difficulty":"medium","id":1774938418314,"createdAt":"2026-03-31T06:26:58.314Z"}];
+        
+            window.questionData['G5lFuTfsI2XtkTaZwZpR'] = [{"text":"what is react","description":"sssssssssssssss","inputFormat":"111","outputFormat":"111","constraints":"111","sampleInput":"1","sampleOutput":"1","testCases":[{"input":"1","output":"1","isHidden":false,"description":"1","id":1774938486413}],"programmingLanguages":["javascript","python","java"],"marks":10,"type":"coding","timeLimit":2,"memoryLimit":256,"id":1774938489565,"createdAt":"2026-03-31T06:28:09.565Z"}];
+        
+        
+        window.startQuizMode = function(paperId) {
+            const container = document.getElementById('quiz-container-' + paperId);
+            const originalContent = document.getElementById('original-content-' + paperId);
+            const questions = window.questionData[paperId];
+            
+            if (!questions || questions.length === 0) return;
+            
+            container.style.display = 'block';
+            originalContent.style.display = 'none';
+            renderQuiz(paperId, questions);
+        };
+        
+        window.showOriginalContent = function(paperId) {
+            const container = document.getElementById('quiz-container-' + paperId);
+            const originalContent = document.getElementById('original-content-' + paperId);
+            
+            container.style.display = 'none';
+            originalContent.style.display = 'block';
+        };
+        
+        function renderQuiz(paperId, questions) {
+            const container = document.getElementById('quiz-container-' + paperId);
+            if (!container) return;
+            
+            let userAnswers = {};
+            let quizSubmitted = false;
+            
+            const mcqQuestions = questions.filter(q => q.type === 'mcq');
+            
+            if (mcqQuestions.length === 0) {
+                container.innerHTML = `
+                    <div class="quiz-container">
+                        <p>No multiple choice questions available for quiz mode.</p>
+                        <button class="quiz-btn secondary" onclick="showOriginalContent('${paperId}')">Back to Paper</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            const renderQuestions = () => {
+                let html = '<div class="quiz-container">';
+                html += '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">';
+                html += '<h3 style="font-size: 1.25rem; font-weight: 600;">Test Your Knowledge</h3>';
+                html += '<div>';
+                html += '<button class="quiz-btn" onclick="submitQuiz(\'' + paperId + '\')" style="margin-right: 0.5rem;">Submit Quiz</button>';
+                html += '<button class="quiz-btn secondary" onclick="showOriginalContent(\'' + paperId + '\')">Back to Paper</button>';
+                html += '</div>';
+                html += '</div>';
+                html += '<p style="margin-bottom: 1.5rem; color: var(--text-light);">Select the best answer for each question.</p>';
+                
+                mcqQuestions.forEach((q, idx) => {
+                    const userAnswer = userAnswers[q.id];
+                    const isCorrect = quizSubmitted && userAnswer !== undefined && userAnswer === q.correctOption;
+                    const isWrong = quizSubmitted && userAnswer !== undefined && userAnswer !== q.correctOption;
+                    
+                    html += '<div class="quiz-question" id="quiz-question-' + paperId + '-' + idx + '">';
+                    html += '<div style="margin-bottom: 0.75rem;">';
+                    html += '<strong>Question ' + (idx + 1) + '</strong>';
+                    html += '<span style="margin-left: 0.75rem; color: var(--text-light); font-size: 0.875rem;">(' + (q.marks || 1) + ' marks)</span>';
+                    html += '</div>';
+                    html += '<div style="margin-bottom: 1rem;">' + escapeHtml(q.text) + '</div>';
+                    
+                    q.options.forEach((opt, optIdx) => {
+                        const letter = String.fromCharCode(65 + optIdx);
+                        const isSelected = userAnswers[q.id] === optIdx;
+                        let optionClass = 'quiz-option';
+                        if (quizSubmitted && optIdx === q.correctOption) optionClass += ' correct-answer';
+                        if (quizSubmitted && isSelected && optIdx !== q.correctOption) optionClass += ' wrong-answer';
+                        if (isSelected && !quizSubmitted) optionClass += ' selected';
+                        
+                        html += '<div class="' + optionClass + '" onclick="selectAnswer(\'' + paperId + '\', ' + q.id + ', ' + optIdx + ', ' + idx + ')">';
+                        html += '<span class="option-letter"><strong>' + letter + '.</strong></span>';
+                        html += '<span class="option-text">' + escapeHtml(opt) + '</span>';
+                        html += '</div>';
+                    });
+                    
+                    if (quizSubmitted && userAnswer !== undefined) {
+                        const feedbackClass = isCorrect ? 'correct' : 'wrong';
+                        const feedbackText = isCorrect ? '✓ Correct!' : '✗ Incorrect. The correct answer is ' + String.fromCharCode(65 + q.correctOption);
+                        html += '<div class="quiz-feedback ' + feedbackClass + '">' + feedbackText + '</div>';
+                    }
+                    
+                    html += '</div>';
+                });
+                
+                if (quizSubmitted) {
+                    const totalMarks = mcqQuestions.reduce((sum, q) => sum + (q.marks || 1), 0);
+                    const earnedMarks = mcqQuestions.reduce((sum, q) => {
+                        if (userAnswers[q.id] === q.correctOption) return sum + (q.marks || 1);
+                        return sum;
+                    }, 0);
+                    const percentage = (earnedMarks / totalMarks * 100).toFixed(1);
+                    
+                    html += '<div class="quiz-results">';
+                    html += '<div class="quiz-score">' + earnedMarks + ' / ' + totalMarks + '</div>';
+                    html += '<div style="margin-top: 0.5rem;">' + percentage + '%</div>';
+                    html += '<button class="quiz-btn secondary" onclick="resetQuiz(\'' + paperId + '\')" style="margin-top: 1rem;">Try Again</button>';
+                    html += '</div>';
+                }
+                
+                html += '</div>';
+                container.innerHTML = html;
+            };
+            
+            window.selectAnswer = function(pid, qid, optIdx, qIdx) {
+                if (quizSubmitted) return;
+                userAnswers[qid] = optIdx;
+                
+                const questionDiv = document.getElementById('quiz-question-' + pid + '-' + qIdx);
+                if (questionDiv) {
+                    const options = questionDiv.querySelectorAll('.quiz-option');
+                    options.forEach((opt, i) => {
+                        if (i === optIdx) {
+                            opt.classList.add('selected');
+                        } else {
+                            opt.classList.remove('selected');
+                        }
+                    });
+                }
+            };
+            
+            window.submitQuiz = function(pid) {
+                quizSubmitted = true;
+                renderQuestions();
+            };
+            
+            window.resetQuiz = function(pid) {
+                userAnswers = {};
+                quizSubmitted = false;
+                renderQuestions();
+            };
+            
+            renderQuestions();
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            generateTOC();
+            addCopyButtons();
+            makeMediaResponsive();
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>

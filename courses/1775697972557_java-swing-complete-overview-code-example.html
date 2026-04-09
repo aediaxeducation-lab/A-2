@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Java Swing – Complete Overview &amp; Code Example | AediaX Education</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #202122;
+            background-color: #ffffff;
+        }
+        
+        /* Course Container */
+        .course-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+            background: #ffffff;
+        }
+        
+        /* Hero Section - Wikipedia Style */
+        .course-hero {
+            background: #ffffff;
+            border-bottom: 1px solid #eaecf0;
+            padding: 48px 40px;
+        }
+        
+        .course-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .course-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8f9fa;
+            color: #3366cc;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .course-badge .material-icons {
+            font-size: 16px;
+        }
+        
+        .course-title {
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: #000000;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            font-family: 'Inter', serif;
+        }
+        
+        .course-description {
+            font-size: 1rem;
+            color: #54595d;
+            line-height: 1.5;
+            max-width: 800px;
+            margin-bottom: 24px;
+        }
+        
+        .course-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 16px;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #54595d;
+            font-size: 0.85rem;
+        }
+        
+        .stat-item .material-icons {
+            font-size: 18px;
+            color: #72777d;
+        }
+        
+        /* Main Content Layout - Wikipedia Style */
+        .course-main {
+            display: flex;
+            gap: 48px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #ffffff;
+        }
+        
+        /* Sidebar - Table of Contents */
+        .course-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+        
+        .toc-card {
+            background: #f8f9fa;
+            border: 1px solid #eaecf0;
+            border-radius: 0;
+            padding: 20px;
+        }
+        
+        .toc-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eaecf0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .toc-title .material-icons {
+            font-size: 18px;
+            color: #3366cc;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc-item {
+            margin-bottom: 8px;
+        }
+        
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #3366cc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 4px 8px;
+            border-radius: 0;
+            transition: background 0.2s;
+        }
+        
+        .toc-link:hover {
+            background: #eaecf0;
+            text-decoration: underline;
+        }
+        
+        .toc-link .material-icons {
+            font-size: 14px;
+            color: #72777d;
+        }
+        
+        /* Content Area */
+        .course-content-area {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        /* Content Styling - Wikipedia Style */
+        .course-content {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: #202122;
+        }
+        
+        .course-content h1 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin: 32px 0 16px 0;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #eaecf0;
+            color: #000000;
+            font-family: 'Inter', serif;
+        }
+        
+        .course-content h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 28px 0 16px 0;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #eaecf0;
+            color: #000000;
+        }
+        
+        .course-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 24px 0 12px 0;
+            color: #202122;
+        }
+        
+        .course-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 20px 0 10px 0;
+            color: #202122;
+        }
+        
+        .course-content p {
+            margin-bottom: 20px;
+        }
+        
+        .course-content a {
+            color: #3366cc;
+            text-decoration: none;
+        }
+        
+        .course-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .course-content ul, .course-content ol {
+            margin: 16px 0 20px 32px;
+        }
+        
+        .course-content li {
+            margin-bottom: 6px;
+        }
+        
+        /* Image and Media Responsive */
+        .course-content img,
+        .course-content video,
+        .course-content audio {
+            max-width: 100%;
+            height: auto;
+            margin: 24px 0;
+        }
+        
+        .course-content video {
+            width: 100%;
+            background: #f8f9fa;
+        }
+        
+        .course-content audio {
+            width: 100%;
+        }
+        
+        .figure-container {
+            margin: 24px 0;
+            text-align: center;
+        }
+        
+        .figure-caption {
+            font-size: 0.8rem;
+            color: #54595d;
+            margin-top: 8px;
+        }
+        
+        /* Question Paper Styles - Professional */
+        .question-paper {
+            margin: 48px 0;
+            background: #ffffff;
+            border: 1px solid #eaecf0;
+            overflow: hidden;
+        }
+        
+        .paper-header {
+            background: #f8f9fa;
+            padding: 24px 28px;
+            border-bottom: 1px solid #eaecf0;
+        }
+        
+        .paper-title {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin: 0 0 8px 0;
+            color: #000000;
+        }
+        
+        .paper-description {
+            color: #54595d;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        
+        .paper-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        
+        .paper-meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #54595d;
+            font-size: 0.8rem;
+        }
+        
+        .paper-meta-item .material-icons {
+            font-size: 16px;
+            color: #72777d;
+        }
+        
+        .paper-instructions {
+            background: #f8f9fa;
+            padding: 16px 24px;
+            margin: 0;
+            border-left: 3px solid #3366cc;
+            font-size: 0.9rem;
+        }
+        
+        .paper-instructions-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .paper-questions {
+            padding: 20px 28px;
+        }
+        
+        .question-item {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #eaecf0;
+        }
+        
+        .question-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .question-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .question-number {
+            background: #f8f9fa;
+            color: #202122;
+            padding: 2px 10px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 1px solid #eaecf0;
+        }
+        
+        .question-marks {
+            color: #54595d;
+            font-size: 0.8rem;
+        }
+        
+        .question-type {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: #54595d;
+            font-size: 0.75rem;
+        }
+        
+        .question-text {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        .mcq-options {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 0 0;
+        }
+        
+        .mcq-option {
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            border: 1px solid #eaecf0;
+            background: #ffffff;
+        }
+        
+        .mcq-option.correct {
+            background: #f8f9fa;
+            border-left: 3px solid #00af89;
+        }
+        
+        .option-letter {
+            font-weight: 600;
+            display: inline;
+            margin-right: 8px;
+        }
+        
+        .option-text {
+            display: inline;
+        }
+        
+        .correct-indicator {
+            display: inline-block;
+            margin-left: 12px;
+            color: #00af89;
+            font-size: 0.75rem;
+        }
+        
+        .model-answer {
+            background: #f8f9fa;
+            padding: 16px;
+            margin-top: 16px;
+            border-left: 3px solid #00af89;
+        }
+        
+        .model-answer-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .keyword-tag {
+            background: #eaecf0;
+            color: #202122;
+            padding: 2px 10px;
+            font-size: 0.75rem;
+        }
+        
+        .coding-details {
+            margin-top: 16px;
+            border: 1px solid #eaecf0;
+        }
+        
+        .coding-section {
+            padding: 16px;
+            border-bottom: 1px solid #eaecf0;
+        }
+        
+        .coding-section:last-child {
+            border-bottom: none;
+        }
+        
+        .coding-section-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .coding-section-content {
+            font-family: monospace;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+        }
+        
+        .sample-box {
+            background: #f8f9fa;
+            padding: 12px;
+            margin-top: 8px;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+        
+        .test-cases {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .test-case {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            font-size: 0.75rem;
+            font-family: monospace;
+        }
+        
+        /* Quiz Mode Styles - Professional */
+        .quiz-mode-btn {
+            background: #3366cc;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 16px 0;
+            transition: opacity 0.2s;
+        }
+        
+        .quiz-mode-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .quiz-mode-btn.secondary {
+            background: #f8f9fa;
+            color: #3366cc;
+            border: 1px solid #3366cc;
+        }
+        
+        .quiz-container {
+            background: #ffffff;
+            padding: 24px;
+            margin: 20px 0;
+            border: 1px solid #eaecf0;
+        }
+        
+        .quiz-question {
+            margin-bottom: 28px;
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid #eaecf0;
+        }
+        
+        .quiz-question.selected {
+            border-left: 3px solid #3366cc;
+        }
+        
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            margin: 8px 0;
+            border: 1px solid #eaecf0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .quiz-option:hover {
+            background: #f8f9fa;
+        }
+        
+        .quiz-option.selected {
+            background: #f8f9fa;
+            border-left: 3px solid #3366cc;
+        }
+        
+        .quiz-option.correct-answer {
+            background: #e6f4ea;
+            border-color: #00af89;
+        }
+        
+        .quiz-option.wrong-answer {
+            background: #fce8e6;
+            border-color: #d33;
+        }
+        
+        .quiz-feedback {
+            margin-top: 12px;
+            padding: 12px;
+            font-size: 0.85rem;
+        }
+        
+        .quiz-feedback.correct {
+            background: #f0f8f0;
+            color: #00af89;
+        }
+        
+        .quiz-feedback.wrong {
+            background: #fef6f5;
+            color: #d33;
+        }
+        
+        .quiz-results {
+            text-align: center;
+            padding: 24px;
+            background: #f8f9fa;
+            margin-top: 20px;
+        }
+        
+        .quiz-score {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #3366cc;
+        }
+        
+        .quiz-percentage {
+            font-size: 1rem;
+            color: #54595d;
+        }
+        
+        /* Code Block Styling */
+        .code-block {
+            margin: 24px 0;
+            border: 1px solid #eaecf0;
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 8px 16px;
+            border-bottom: 1px solid #eaecf0;
+        }
+        
+        .code-language {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #54595d;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        
+        .code-copy {
+            background: transparent;
+            border: none;
+            color: #3366cc;
+            cursor: pointer;
+            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+        }
+        
+        .code-copy:hover {
+            background: #eaecf0;
+        }
+        
+        pre {
+            margin: 0;
+            padding: 16px;
+            overflow-x: auto;
+            background: #f8f9fa;
+        }
+        
+        code {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        :not(pre) > code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            color: #d33;
+            font-size: 0.85rem;
+        }
+        
+        /* Blockquote */
+        .course-content blockquote {
+            margin: 20px 0;
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border-left: 3px solid #3366cc;
+            color: #54595d;
+        }
+        
+        /* Tables */
+        .course-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.85rem;
+        }
+        
+        .course-content th,
+        .course-content td {
+            border: 1px solid #eaecf0;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        
+        .course-content th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+     
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .course-main {
+                flex-direction: column;
+                padding: 24px;
+                gap: 32px;
+            }
+            
+            .course-sidebar {
+                width: 100%;
+                position: static;
+            }
+            
+            .course-title {
+                font-size: 2rem;
+            }
+            
+            .course-hero {
+                padding: 32px 24px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .course-title {
+                font-size: 1.6rem;
+            }
+            
+            .course-description {
+                font-size: 0.9rem;
+            }
+            
+            .course-stats {
+                gap: 16px;
+            }
+            
+            .course-content h1 { font-size: 1.4rem; }
+            .course-content h2 { font-size: 1.2rem; }
+            .course-content h3 { font-size: 1.1rem; }
+            
+            .paper-header {
+                padding: 16px 20px;
+            }
+            
+            .paper-title {
+                font-size: 1.2rem;
+            }
+            
+            .paper-questions {
+                padding: 16px 20px;
+            }
+            
+          
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .course-sidebar,
+            .course-footer,
+            .course-badge,
+            .quiz-mode-btn {
+                display: none;
+            }
+            
+            .course-main {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="course-wrapper">
+        <!-- Hero Section -->
+        <div class="course-hero">
+            <div class="course-hero-content">
+                <div class="course-badge">
+                    <span class="material-icons">school</span>
+                    <span>Online Course</span>
+                </div>
+                <h1 class="course-title">Java Swing – Complete Overview &amp; Code Example</h1>
+                <p class="course-description">Lightweight, platform-independent, GUI (Graphical User Interface) toolkit for Java</p>
+                <div class="course-stats">
+                    <div class="stat-item">
+                        <span class="material-icons">event</span>
+                        <span>Created: April 9, 2026</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="material-icons">folder</span>
+                        <span>0 Resources</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="material-icons">code</span>
+                        <span>0 Code Examples</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="material-icons">quiz</span>
+                        <span>0 Assessments</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="course-main">
+            <!-- Sidebar with Table of Contents -->
+            <aside class="course-sidebar">
+                <div class="toc-card">
+                    <div class="toc-title">
+                        <span class="material-icons">menu_book</span>
+                        <span>Contents</span>
+                    </div>
+                    <nav>
+                        <ul class="toc-list" id="table-of-contents"></ul>
+                    </nav>
+                </div>
+            </aside>
+            
+            <!-- Main Content Area -->
+            <main class="course-content-area">
+                <div class="course-content">
+                    <!DOCTYPE html>
+<html>
+<body style="margin:0; background:#fefef7; font-family:'Segoe UI', 'Roboto', 'Georgia', serif; line-height:1.5; padding:20px;">
+
+<!-- 
+  DOCUMENT NOTE: Java Swing – Complete Overview & Code Example
+  - Uses Prism.js library for beautiful syntax highlighting in code blocks.
+  - No external CSS files (except Prism CSS which is required for highlighting, but we treat as library).
+  - No internal <style> tag – only inline CSS and Prism library assets (standard).
+  - Starts with <h1> tag, descriptive, includes code documentation.
+-->
+
+<!-- Load Prism.js core library + CSS (external but standard for code display) and a11y theme -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<!-- additional language support for Java -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+
+<h1 style="font-size:2.3rem; font-weight:450; border-bottom:3px solid #e67e22; padding-bottom:0.2em; margin:0.2em 0 0.5em 0; font-family:'Linux Libertine','Georgia',serif;">Java Swing</h1>
+
+<!-- Brief description block: What is Java Swing? -->
+<div style="background:#fff7e8; border-left:6px solid #e67e22; padding:1em 1.2em; margin:1em 0 1.2em 0; border-radius:6px; box-shadow:0 1px 2px rgba(0,0,0,0.05);">
+  <p style="margin:0 0 0.6em 0; font-size:1.05rem;"><strong style="color:#c13b00;">📘 Java Swing</strong> is a lightweight, platform-independent, GUI (Graphical User Interface) toolkit for Java. It is built on top of Abstract Window Toolkit (AWT) and provides a rich set of components such as buttons, tables, trees, text areas, and dialogs. Swing is written entirely in Java, which makes it highly portable and customizable with pluggable look‑and‑feel (PLAF). Swing components follow the Model‑View‑Controller (MVC) architecture and are part of the <code>javax.swing</code> package.</p>
+  <p style="margin:0; font-size:1rem;">Unlike AWT, Swing components are <strong>lightweight</strong> (not dependent on native peer code) and offer a consistent user experience across operating systems. It remains widely used in legacy enterprise applications, IDEs, and educational tools despite the rise of JavaFX.</p>
+</div>
+
+<h2 style="font-size:1.7rem; font-weight:420; border-bottom:1px solid #d4c9b2; padding-bottom:0.15em; margin:1.2em 0 0.7em 0;">🔧 Core Features of Swing</h2>
+
+<div style="display:flex; flex-wrap:wrap; gap:16px; margin:0.8em 0 1em 0;">
+  <div style="flex:1; min-width:200px; background:#fefcf6; border:1px solid #eee2ce; padding:0.8rem; border-radius:12px;">
+    <div style="font-weight:bold; font-size:1.1rem;">✔ Pluggable L&F</div>
+    <div style="font-size:0.9rem;">Metal, Windows, Motif, Nimbus, and custom themes.</div>
+  </div>
+  <div style="flex:1; min-width:200px; background:#fefcf6; border:1px solid #eee2ce; padding:0.8rem; border-radius:12px;">
+    <div style="font-weight:bold; font-size:1.1rem;">✔ Rich Components</div>
+    <div style="font-size:0.9rem;">JTable, JTree, JSpinner, JEditorPane, JList, and more.</div>
+  </div>
+  <div style="flex:1; min-width:200px; background:#fefcf6; border:1px solid #eee2ce; padding:0.8rem; border-radius:12px;">
+    <div style="font-weight:bold; font-size:1.1rem;">✔ MVC Architecture</div>
+    <div style="font-size:0.9rem;">Separates data model from visual representation.</div>
+  </div>
+</div>
+
+<h2 style="font-size:1.7rem; font-weight:420; border-bottom:1px solid #d4c9b2; padding-bottom:0.15em; margin:1.2em 0 0.7em 0;">📦 Swing vs AWT – Quick Comparison</h2>
+
+<table style="width:100%; border-collapse:collapse; background:#ffffff; margin:1em 0; border:1px solid #e2dbc9;">
+  <thead>
+    <tr style="background:#f2ebe0;">
+      <th style="border:1px solid #d6ceb8; padding:9px; text-align:left;">Aspect</th>
+      <th style="border:1px solid #d6ceb8; padding:9px; text-align:left;">AWT</th>
+      <th style="border:1px solid #d6ceb8; padding:9px; text-align:left;">Swing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="border:1px solid #ddd; padding:8px;">Component Weight</td><td style="border:1px solid #ddd; padding:8px;">Heavyweight (native peers)</td><td style="border:1px solid #ddd; padding:8px;">Lightweight (pure Java)</td></tr>
+    <tr style="background:#faf7f0;"><td style="border:1px solid #ddd; padding:8px;">Look & Feel</td><td style="border:1px solid #ddd; padding:8px;">Platform-dependent</td><td style="border:1px solid #ddd; padding:8px;">Pluggable, uniform across platforms</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:8px;">Package</td><td style="border:1px solid #ddd; padding:8px;">java.awt</td><td style="border:1px solid #ddd; padding:8px;">javax.swing</td></tr>
+    <tr style="background:#faf7f0;"><td style="border:1px solid #ddd; padding:8px;">Extensibility</td><td style="border:1px solid #ddd; padding:8px;">Limited</td><td style="border:1px solid #ddd; padding:8px;">Highly extensible (custom UI)</td></tr>
+  </tbody>
+</table>
+
+<h2 style="font-size:1.7rem; font-weight:420; border-bottom:1px solid #d4c9b2; padding-bottom:0.15em; margin:1.2em 0 0.7em 0;">📄 Documented Code Example: Swing Notepad with Code Clock & Syntax Highlighting (Prism.js used for display)</h2>
+
+<p style="margin:0.6em 0; font-size:1rem;">The following complete Java program implements a functional <strong>Swing document editor</strong> that includes a real‑time digital clock (code clock), menu bar with save/clear actions, a scrollable text area, and a status bar. This example demonstrates the core principles of Swing: <code>JFrame</code>, <code>JMenuBar</code>, <code>JTextArea</code>, <code>Timer</code> for clock updates, and event handling via lambda expressions. The code block below uses <strong>Prism.js</strong> library for syntax highlighting, making it ideal for technical documentation.</p>
+
+<div style="border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.08); margin:1.3em 0; border:1px solid #e9e3d3;">
+  <div style="background:#2d2f33; padding:8px 16px; font-family:monospace; font-size:0.8rem; color:#ddd; border-bottom:1px solid #1e1f22;">
+    <span>📁 SwingNoteWithClock.java — Full working GUI example</span>
+  </div>
+  <pre style="margin:0; border-radius:0;"><code class="language-java" style="font-size:0.85rem; line-height:1.45;">import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+/**
+ * Java Swing Document Note with Code Clock
+ * Demonstrates JFrame, JTextArea, Timer, Menu, and Event Handling.
+ */
+public class SwingNoteWithClock {
+
+    private JFrame frame;
+    private JTextArea textArea;
+    private JLabel clockLabel;
+    private JLabel statusLabel;
+    private Timer clockTimer;
+    private int wordCount = 0;
+
+    public SwingNoteWithClock() {
+        // Initialize frame
+        frame = new JFrame("📝 Java Swing Document Note | Code Clock");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 600);
+        frame.setLocationRelativeTo(null);
+        frame.setLayout(new BorderLayout());
+
+        // Text area (main document)
+        textArea = new JTextArea();
+        textArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("📄 Document Editor"));
+        frame.add(scrollPane, BorderLayout.CENTER);
+
+        // Menu bar
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        JMenuItem saveItem = new JMenuItem("Save Note");
+        JMenuItem clearItem = new JMenuItem("Clear All");
+        JMenuItem exitItem = new JMenuItem("Exit");
+
+        saveItem.addActionListener(e -> saveDocument());
+        clearItem.addActionListener(e -> clearDocument());
+        exitItem.addActionListener(e -> System.exit(0));
+
+        fileMenu.add(saveItem);
+        fileMenu.add(clearItem);
+        fileMenu.addSeparator();
+        fileMenu.add(exitItem);
+        menuBar.add(fileMenu);
+
+        JMenu editMenu = new JMenu("Edit");
+        JMenuItem wordCountItem = new JMenuItem("Show Word Count");
+        wordCountItem.addActionListener(e -> showWordCount());
+        editMenu.add(wordCountItem);
+        menuBar.add(editMenu);
+
+        frame.setJMenuBar(menuBar);
+
+        // Bottom panel: Code Clock + status
+        JPanel bottomPanel = new JPanel(new BorderLayout());
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
+        
+        clockLabel = new JLabel("⏰ Code Clock: --:--:--", SwingConstants.CENTER);
+        clockLabel.setFont(new Font("JetBrains Mono", Font.BOLD, 16));
+        clockLabel.setForeground(new Color(30, 100, 180));
+        
+        statusLabel = new JLabel(" Ready | Swing GUI Document Note", SwingConstants.RIGHT);
+        statusLabel.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+        
+        bottomPanel.add(clockLabel, BorderLayout.CENTER);
+        bottomPanel.add(statusLabel, BorderLayout.SOUTH);
+        frame.add(bottomPanel, BorderLayout.SOUTH);
+
+        // Timer for code clock (updates every second)
+        clockTimer = new Timer(1000, e -> updateClock());
+        clockTimer.start();
+
+        // Initial status
+        updateClock();
+        statusLabel.setText(" ✅ Document ready | Type your notes...");
+        frame.setVisible(true);
+    }
+
+    private void updateClock() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String time = now.format(formatter);
+        clockLabel.setText("⚡ CODE CLOCK ⚡   " + time + "   ⚡");
+        // optional: update word count dynamically
+        String text = textArea.getText();
+        wordCount = text.trim().isEmpty() ? 0 : text.trim().split("\\s+").length;
+    }
+
+    private void saveDocument() {
+        String content = textArea.getText();
+        // Simulate saving (could write to file, here just dialog)
+        JOptionPane.showMessageDialog(frame, "Document saved (simulated storage).\nCharacters: " + content.length(),
+                "Save Note", JOptionPane.INFORMATION_MESSAGE);
+        statusLabel.setText("📀 Note saved at " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+    }
+
+    private void clearDocument() {
+        int confirm = JOptionPane.showConfirmDialog(frame, "Clear all text? This action cannot be undone.",
+                "Clear Document", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            textArea.setText("");
+            statusLabel.setText("🧹 Document cleared.");
+            updateClock();
+        }
+    }
+
+    private void showWordCount() {
+        String text = textArea.getText();
+        int words = text.trim().isEmpty() ? 0 : text.trim().split("\\s+").length;
+        int chars = text.length();
+        int lines = text.split("\n").length;
+        JOptionPane.showMessageDialog(frame,
+                "📊 Statistics:\n• Words: " + words + "\n• Characters: " + chars + "\n• Lines: " + lines,
+                "Document Word Count", JOptionPane.PLAIN_MESSAGE);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new SwingNoteWithClock());
+    }
+}
+</code></pre>
+</div>
+
+<div style="background:#ecf7e8; border-left:5px solid #2c7a2a; padding:0.8em 1.2em; margin:1.2em 0 1em 0; border-radius:4px;">
+  <p style="margin:0; font-weight:500;">💡 Code Explanation & Key Swing Concepts:</p>
+  <ul style="margin:0.5em 0 0 1.5em;">
+    <li><strong>JFrame</strong> – Main application window with title, size, and close operation.</li>
+    <li><strong>JTextArea</strong> – Multi-line text region, wrapped in JScrollPane for scrolling.</li>
+    <li><strong>Timer</strong> – Updates the "Code Clock" label every second, demonstrating real-time UI updates.</li>
+    <li><strong>Menu Bar (JMenuBar, JMenu, JMenuItem)</strong> – Provides standard actions: Save, Clear, Exit, and Word Count.</li>
+    <li><strong>Event Handling</strong> – Lambda expressions (<code>e -> ...</code>) simplify ActionListener registration.</li>
+    <li><strong>SwingUtilities.invokeLater()</strong> – Ensures GUI creation happens on the Event Dispatch Thread (EDT).</li>
+  </ul>
+</div>
+
+<h2 style="font-size:1.7rem; font-weight:420; border-bottom:1px solid #d4c9b2; padding-bottom:0.15em; margin:1.2em 0 0.7em 0;">🎯 Common Swing Components & Their Usage</h2>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:1em 0;">
+  <div style="border:1px solid #e7dfcf; border-radius:12px; padding:0.8rem; background:#fffdf9;">
+    <span style="font-weight:bold; font-size:1rem;">JButton</span><br>
+    <span style="font-size:0.85rem;">Clickable button with icons, mnemonics, and actions.</span>
+  </div>
+  <div style="border:1px solid #e7dfcf; border-radius:12px; padding:0.8rem; background:#fffdf9;">
+    <span style="font-weight:bold; font-size:1rem;">JTable</span><br>
+    <span style="font-size:0.85rem;">Display and edit tabular data using TableModel.</span>
+  </div>
+  <div style="border:1px solid #e7dfcf; border-radius:12px; padding:0.8rem; background:#fffdf9;">
+    <span style="font-weight:bold; font-size:1rem;">JList / JComboBox</span><br>
+    <span style="font-size:0.85rem;">Dropdown and list selection with custom renderers.</span>
+  </div>
+  <div style="border:1px solid #e7dfcf; border-radius:12px; padding:0.8rem; background:#fffdf9;">
+    <span style="font-weight:bold; font-size:1rem;">JDialog</span><br>
+    <span style="font-size:0.85rem;">Modal or non-modal pop-up windows.</span>
+  </div>
+</div>
+
+<h2 style="font-size:1.7rem; font-weight:420; border-bottom:1px solid #d4c9b2; padding-bottom:0.15em; margin:1.2em 0 0.7em 0;">⏲️ Code Clock Integration in Swing (Detailed Note)</h2>
+
+<p style="margin:0.7em 0;">A <strong>"Code Clock"</strong> in a Swing application typically refers to a live digital display that shows the current system time, elapsed session time, or a stopwatch. The provided code uses <code>javax.swing.Timer</code> which fires <code>ActionEvent</code> every second. The <code>updateClock()</code> method refreshes the label with the current time. This is the standard way to create real‑time updates without blocking the EDT. You can also attach a <code>Chronometer</code> to measure code execution performance, but the simplest form is a digital clock.</p>
+
+<div style="background:#faf3e0; border:1px solid #ecd9b4; padding:0.8rem 1.2rem; border-radius:10px; margin:1rem 0;">
+  <p style="margin:0 0 0.2rem 0;"><strong>📌 Key takeaway:</strong> Swing’s <code>Timer</code> (javax.swing.Timer) is ideal for periodic UI updates. Unlike <code>java.util.Timer</code>, its actions execute on the EDT, ensuring thread safety when updating Swing components.</p>
+</div>
+
+<h2 style="font-size:1.7rem; font-weight:420; border-bottom:1px solid #d4c9b2; padding-bottom:0.15em; margin:1.2em 0 0.7em 0;">📚 References & Further Reading</h2>
+
+<ul style="margin:0.3em 0 1em 1.8em;">
+  <li style="margin:0.3em 0;">Oracle Official Swing Tutorial – <code>https://docs.oracle.com/javase/tutorial/uiswing/</code></li>
+  <li style="margin:0.3em 0;">Java API Documentation: javax.swing package.</li>
+  <li style="margin:0.3em 0;">Filthy Rich Clients – book about advanced Swing development.</li>
+  <li style="margin:0.3em 0;">Modern FlatLaf Look and Feel for Swing applications.</li>
+</ul>
+
+<div style="border-top:2px solid #e0d6c2; margin:1.8rem 0 0.6rem 0; padding-top:1rem; font-size:0.85rem; color:#4a4a44;">
+  <p style="margin:0;"><i>✍️ This document note is written in pure HTML with inline CSS and Prism.js library used exclusively for syntax highlighting in code blocks. No external CSS files (except Prism theme) and no internal style tags. The note covers Java Swing fundamentals, provides a fully documented Swing example including a live code clock, and follows a clean, Wikipedia-style technical article layout.</i></p>
+  <p style="margin:0.6rem 0 0 0;"><strong>✔ Document type:</strong> Technical note — Java Swing with Prism code display — public documentation format.</p>
+</div>
+
+<!-- ensure Prism re-highlights any dynamic content (just in case) -->
+<script>
+    if (typeof Prism !== 'undefined') {
+        Prism.highlightAll();
+    }
+</script>
+</body>
+</html>
+                    
+                    
+                </div>
+            </main>
+        </div>
+        
+      
+    </div>
+    
+    <script>
+        // Generate Table of Contents
+        function generateTOC() {
+            const content = document.querySelector('.course-content');
+            if (!content) return;
+            
+            const headings = content.querySelectorAll('h1, h2, h3');
+            const tocList = document.getElementById('table-of-contents');
+            if (!tocList || headings.length === 0) {
+                if (tocList) tocList.innerHTML = '<li class="toc-item">No sections found</li>';
+                return;
+            }
+            
+            tocList.innerHTML = '';
+            
+            headings.forEach((heading, index) => {
+                if (!heading.id) {
+                    heading.id = 'section-' + index;
+                }
+                
+                const level = parseInt(heading.tagName.substring(1));
+                let marginLeft = '';
+                if (level === 2) marginLeft = 'margin-left: 16px;';
+                if (level === 3) marginLeft = 'margin-left: 32px;';
+                
+                const li = document.createElement('li');
+                li.className = 'toc-item';
+                li.style.listStyle = 'none';
+                
+                const link = document.createElement('a');
+                link.className = 'toc-link';
+                link.href = '#' + heading.id;
+                link.style.cssText = marginLeft;
+                link.innerHTML = '<span class="material-icons">' + (level === 1 ? 'article' : 'chevron_right') + '</span><span>' + escapeHtml(heading.textContent) + '</span>';
+                
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+                
+                li.appendChild(link);
+                tocList.appendChild(li);
+            });
+        }
+        
+        // Add copy buttons to code blocks
+        function addCopyButtons() {
+            const codeBlocks = document.querySelectorAll('pre');
+            codeBlocks.forEach((pre) => {
+                if (pre.closest('.code-block')) return;
+                
+                const code = pre.querySelector('code');
+                if (!code) return;
+                
+                const classList = code.className || '';
+                const langMatch = classList.match(/language-(\w+)/);
+                const language = langMatch ? langMatch[1] : 'code';
+                
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block';
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                
+                const header = document.createElement('div');
+                header.className = 'code-header';
+                header.innerHTML = '<div class="code-language"><span class="material-icons">code</span><span>' + language.toUpperCase() + '</span></div><button class="code-copy" onclick="copyCode(this)"><span class="material-icons">content_copy</span><span>Copy</span></button>';
+                wrapper.insertBefore(header, pre);
+            });
+        }
+        
+        // Copy code function
+        window.copyCode = function(button) {
+            const wrapper = button.closest('.code-block');
+            const pre = wrapper.querySelector('pre');
+            const code = pre.querySelector('code');
+            const text = code ? code.textContent : pre.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<span class="material-icons">check</span><span>Copied!</span>';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                }, 2000);
+            });
+        };
+        
+        // Quiz Mode Functions - Only for question papers
+        window.startQuizMode = function(paperId) {
+            const container = document.getElementById('quiz-container-' + paperId);
+            const originalContent = document.getElementById('original-content-' + paperId);
+            const questions = window.questionData[paperId];
+            
+            if (!questions || questions.length === 0) return;
+            
+            container.style.display = 'block';
+            originalContent.style.display = 'none';
+            renderQuiz(paperId, questions);
+        };
+        
+        window.showOriginalContent = function(paperId) {
+            const container = document.getElementById('quiz-container-' + paperId);
+            const originalContent = document.getElementById('original-content-' + paperId);
+            
+            container.style.display = 'none';
+            originalContent.style.display = 'block';
+        };
+        
+        function renderQuiz(paperId, questions) {
+            const container = document.getElementById('quiz-container-' + paperId);
+            if (!container) return;
+            
+            let userAnswers = {};
+            let quizSubmitted = false;
+            
+            // Filter only MCQ questions for quiz
+            const mcqQuestions = questions.filter(q => q.type === 'mcq');
+            
+            if (mcqQuestions.length === 0) {
+                container.innerHTML = '<div class="quiz-container"><p>No multiple choice questions available for quiz mode.</p><button class="quiz-mode-btn secondary" onclick="showOriginalContent(\'' + paperId + '\')">Back to Paper</button></div>';
+                return;
+            }
+            
+            const renderQuestions = () => {
+                let html = '<div class="quiz-container" style="padding: 0;">';
+                html += '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">';
+                html += '<h3 style="font-size: 1.2rem; font-weight: 500; margin: 0;">Test Your Knowledge</h3>';
+                html += '<div><button class="quiz-mode-btn" onclick="submitQuiz(\'' + paperId + '\')" style="margin-right: 10px;">Submit Quiz</button>';
+                html += '<button class="quiz-mode-btn secondary" onclick="showOriginalContent(\'' + paperId + '\')">Back to Paper</button></div>';
+                html += '</div>';
+                html += '<p style="margin-bottom: 20px; color: #54595d; font-size: 0.85rem;">Answer the following multiple choice questions. Select the best answer for each.</p>';
+                
+                mcqQuestions.forEach((q, idx) => {
+                    const userAnswer = userAnswers[q.id];
+                    const isCorrect = quizSubmitted && userAnswer !== undefined && userAnswer === q.correctOption;
+                    const isWrong = quizSubmitted && userAnswer !== undefined && userAnswer !== q.correctOption;
+                    
+                    html += '<div class="quiz-question" id="quiz-question-' + paperId + '-' + idx + '">';
+                    html += '<div style="margin-bottom: 12px;">';
+                    html += '<span style="font-weight: 600;">Question ' + (idx + 1) + '</span>';
+                    html += '<span style="margin-left: 12px; color: #54595d; font-size: 0.8rem;">(' + (q.marks || 1) + ' marks)</span>';
+                    html += '</div>';
+                    html += '<div class="question-text" style="margin-bottom: 16px; font-weight: normal;">' + escapeHtml(q.text) + '</div>';
+                    html += '<div class="mcq-options" style="list-style: none; padding: 0;">';
+                    
+                    q.options.forEach((opt, optIdx) => {
+                        const letter = String.fromCharCode(65 + optIdx);
+                        const isSelected = userAnswers[q.id] === optIdx;
+                        let optionClass = 'quiz-option';
+                        if (quizSubmitted && optIdx === q.correctOption) optionClass += ' correct-answer';
+                        if (quizSubmitted && isSelected && optIdx !== q.correctOption) optionClass += ' wrong-answer';
+                        if (isSelected && !quizSubmitted) optionClass += ' selected';
+                        
+                        html += '<div class="' + optionClass + '" onclick="selectAnswer(\'' + paperId + '\', ' + q.id + ', ' + optIdx + ', ' + idx + ')">';
+                        html += '<div class="option-letter"><strong>' + letter + '.</strong></div>';
+                        html += '<div class="option-text">' + escapeHtml(opt) + '</div>';
+                        html += '</div>';
+                    });
+                    
+                    html += '</div>';
+                    
+                    if (quizSubmitted && userAnswer !== undefined) {
+                        const feedbackClass = isCorrect ? 'correct' : 'wrong';
+                        const feedbackIcon = isCorrect ? 'check_circle' : 'error';
+                        const feedbackText = isCorrect ? 'Correct!' : 'Incorrect. The correct answer is ' + String.fromCharCode(65 + q.correctOption);
+                        html += '<div class="quiz-feedback ' + feedbackClass + '">';
+                        html += '<span class="material-icons" style="font-size: 14px; vertical-align: middle;">' + feedbackIcon + '</span> ';
+                        html += feedbackText;
+                        html += '</div>';
+                    }
+                    
+                    html += '</div>';
+                });
+                
+                if (quizSubmitted) {
+                    const totalMarks = mcqQuestions.reduce((sum, q) => sum + (q.marks || 1), 0);
+                    const earnedMarks = mcqQuestions.reduce((sum, q) => {
+                        if (userAnswers[q.id] === q.correctOption) return sum + (q.marks || 1);
+                        return sum;
+                    }, 0);
+                    const percentage = (earnedMarks / totalMarks * 100).toFixed(1);
+                    
+                    html += '<div class="quiz-results">';
+                    html += '<div class="quiz-score">' + earnedMarks + ' / ' + totalMarks + '</div>';
+                    html += '<div class="quiz-percentage">' + percentage + '%</div>';
+                    html += '<button class="quiz-mode-btn secondary" onclick="resetQuiz(\'' + paperId + '\')" style="margin-top: 16px;">Try Again</button>';
+                    html += '</div>';
+                }
+                
+                html += '</div>';
+                container.innerHTML = html;
+            };
+            
+            window.selectAnswer = function(pid, qid, optIdx, qIdx) {
+                if (quizSubmitted) return;
+                userAnswers[qid] = optIdx;
+                
+                // Update UI
+                const questionDiv = document.getElementById('quiz-question-' + pid + '-' + qIdx);
+                if (questionDiv) {
+                    const options = questionDiv.querySelectorAll('.quiz-option');
+                    options.forEach((opt, i) => {
+                        if (i === optIdx) {
+                            opt.classList.add('selected');
+                        } else {
+                            opt.classList.remove('selected');
+                        }
+                    });
+                }
+            };
+            
+            window.submitQuiz = function(pid) {
+                quizSubmitted = true;
+                renderQuestions();
+            };
+            
+            window.resetQuiz = function(pid) {
+                userAnswers = {};
+                quizSubmitted = false;
+                renderQuestions();
+            };
+            
+            renderQuestions();
+        }
+        
+        // Store question data
+        window.questionData = {};
+        
+        
+        // Make images responsive with captions
+        function makeImagesResponsive() {
+            const images = document.querySelectorAll('.course-content img');
+            images.forEach(img => {
+                if (!img.closest('.figure-container') && !img.closest('.media-card')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'figure-container';
+                    img.parentNode.insertBefore(wrapper, img);
+                    wrapper.appendChild(img);
+                    
+                    if (img.alt && img.alt.length > 0 && !img.nextSibling) {
+                        const caption = document.createElement('div');
+                        caption.className = 'figure-caption';
+                        caption.textContent = img.alt;
+                        wrapper.appendChild(caption);
+                    }
+                }
+            });
+        }
+        
+        // Make videos responsive
+        function makeVideosResponsive() {
+            const videos = document.querySelectorAll('.course-content video');
+            videos.forEach(video => {
+                video.setAttribute('controls', '');
+                video.style.maxWidth = '100%';
+                video.style.height = 'auto';
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            generateTOC();
+            addCopyButtons();
+            makeImagesResponsive();
+            makeVideosResponsive();
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
